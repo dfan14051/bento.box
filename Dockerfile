@@ -19,3 +19,5 @@ RUN bundle install
 
 # 7: Add the app's path
 ADD . /app
+
+CMD ["rails","server","-b","0.0.0.0"]
