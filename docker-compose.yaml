@@ -1,0 +1,22 @@
+version: '2'
+services:
+  db:
+    image: mysql
+    ports:
+      - "6033:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD:
+      MYSQL_USER: root
+      MYSQL_PASSWORD:
+      MYSQL_DATABASE: lunch_db
+  web:
+    build: .
+    command: bundle exec rails s -p 3000
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    links:
+     - db:sql_srv
+    depends_on:
+      - db
